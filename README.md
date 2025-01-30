@@ -26,6 +26,8 @@ MakeVB is a .NET MAUI application designed to automate the build process for Vis
 3. Click the button to initiate the build process.
 4. The application will display the output of the build process and indicate whether the build succeeded or failed.
 
+TODO: Install in Windows and create a context menu link for .vbp files, so it can be used in file explorer.
+
 ### Automatic Build on Startup
 
 The application checks if the specified VB6 project file and target binary directory exist on startup. If both are present, the build process is automatically initiated.
