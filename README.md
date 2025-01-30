@@ -53,6 +53,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgments
 
 - Special thanks to the .NET MAUI team for creating a powerful and flexible framework for building cross-platform applications.
-
+- And finally, thanks to Copilot for drafting this fine readme file.
 ---
 
