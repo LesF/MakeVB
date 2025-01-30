@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "MsixPackage",
+      "commandLineArgs": "d:\\Projects\\HealthViewsGit\\CWS\\IHMessenger\\ComponentsSource\\VB6\\Business\\IHMStreamLab\\IHMStreamLab.vbp",
+      "nativeDebugging": false
+    }
+  }
+}

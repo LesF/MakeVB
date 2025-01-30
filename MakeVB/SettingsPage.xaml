@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MakeVB.SettingsPage">
+
+    <VerticalStackLayout Margin="10,0,10,0">
+        <Label Text="Settings" Style="{StaticResource Headline}" HorizontalOptions="Start" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Path to VB executable" TextColor="Gray" Margin="0,20,0,0" Grid.Row="0" />
+
+            <Entry x:Name="PathToVBExe" Placeholder="Path to VB executable" Grid.Column="0" Grid.Row="1" />
+            <Button Text="Find" Clicked="OnFindExeClicked" 
+                HorizontalOptions="End" WidthRequest="60" Grid.Column="1" Grid.Row="1" />
+
+            <Label Text="Path to temporary build directory" TextColor="Gray" Margin="0,20,0,0" Grid.Row="2" />
+            
+            <Entry x:Name="PathToBuildDir" Placeholder="Path to temporary build directory" Grid.Row="3" />
+            <Button Text="Find" Clicked="OnSelectDirClicked"
+                HorizontalOptions="End" WidthRequest="60" Grid.Column="1" Grid.Row="3" />
+
+            <HorizontalStackLayout Spacing="10" Margin="0,20,0,0" Grid.Row="4">
+                <Button Text="OK" Clicked="OnOkClicked" HorizontalOptions="Start" WidthRequest="150" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="Start" WidthRequest="150"  />
+            </HorizontalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
