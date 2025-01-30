@@ -6,7 +6,7 @@ MakeVB is a .NET MAUI application designed to automate the build process for Vis
 
 - Specify the path to a VB6 project file (.vbp).
 - Specify the target binary directory for the build output.
-- Automatically find the relative binary directory based on the project file path.
+- Automatically find the relative binary directory based on the project file path (dependant on your project directory structures).
 - Validate the existence of the specified project file and target directory.
 - Initiate the build process and display the output of the build process.
 - Check if the expected output file (.dll or .exe) exists and is newer than the project file.
@@ -30,7 +30,7 @@ TODO: Install in Windows and create a context menu link for .vbp files, so it ca
 
 ### Automatic Build on Startup
 
-The application checks if the specified VB6 project file and target binary directory exist on startup. If both are present, the build process is automatically initiated.
+The application checks if the VB6 project file specified in the command line (and optionally the target binary directory) exist on startup. If both are present, the build process is automatically initiated.
 
 ## Learning Objectives
 
