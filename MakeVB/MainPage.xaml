@@ -9,6 +9,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -33,7 +34,7 @@
 
         <VerticalStackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <Label Text="Source Project" TextColor="Gray" Margin="0,20,0,0" />
-            <Entry x:Name="PathToVBP" Placeholder="Path to VB project file" />
+            <Entry x:Name="PathToVBP" Placeholder="Path to VB project file"  />
         </VerticalStackLayout>
 
         <VerticalStackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
@@ -41,7 +42,9 @@
             <Entry x:Name="TargetBin" Placeholder="Output directory" />
         </VerticalStackLayout>
 
-        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Output... todo..." TextColor="SteelBlue" Margin="0,20,0,0" />
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Make VB Project" Clicked="OnMakeVBProject" Margin="0,20,0,0" HorizontalOptions="Start"  WidthRequest="150" />
+
+        <Label x:Name="OutputLabel" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Output... todo..." TextColor="SteelBlue" Margin="0,20,0,0" />
 
     </Grid>
 
