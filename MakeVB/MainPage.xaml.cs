@@ -34,24 +34,22 @@ namespace MakeVB
             }
             TargetBin.Text = _targetBinDirectory;
 
-            /* TODO 
-             * - Add a button to initiate the build process
-             * - If a valid .vbp was provide in the command line, and the output dir is valid, automatically start the build process
-             * - Get details of the expected .dll or .exe file in the target bin directory and display them
-             *      * Might need to inspect content of the .vbp file to find the output name or suffix,
-             *        or assume it will be the project name followed by .dll or .exe  (check if any of our projects have a different binary name)
-             *      * Need to check the modified date to see if the file was updated
-             */
-
+            // Check if PathToVBP contains the name of an existing .vbp file
+            // and TargetBin contains the name of an existing directory
+            if (File.Exists(PathToVBP.Text) && Directory.Exists(TargetBin.Text))
+            {
+                // Initiate the build process
+                _ = BuildProject(PathToVBP.Text, TargetBin.Text);
+            }
         }
 
         private string FindRelativeBin(string? sourceDirectory)
         {
             /* NOTE: This is specific to HealthViews source repository structure.
              * For an IHM project, example:
-             *      d:\Projects\HealthViewsGit\CWS\IHMessenger\ComponentsSource\VB6\Business\IHMStreamTXT\IHMStreamTXT.vbp
+             *      d:\...whatever...\IHMessenger\ComponentsSource\VB6\Business\IHMStreamTXT\IHMStreamTXT.vbp
              * The relative bin directory is:
-             *      d:\Projects\HealthViewsGit\CWS\IHMessenger\Components\Bin\
+             *      d:\...whatever...\IHMessenger\Components\Bin\
              */
 
             if (String.IsNullOrEmpty(sourceDirectory))
@@ -140,12 +138,8 @@ namespace MakeVB
             string expectedOutputEXE = Path.Combine(targetBin, Path.GetFileNameWithoutExtension(pathToVBP) + ".exe");
 
             string makeCommand = $"\"{_pathToVBExe}\" /make \"{pathToVBP}\"";
-            /* TODO
-             * Execute the command line, in the context of the target bin directory, capturing the output
-             * Do a check afterwards to see if the expected .dll or .exe file exists, with a date later than the .vbp file
-             */
 
-            // TODO add a large text box to display the output of the build process
+            // Display the output of the build process
             OutputLabel.Text = makeCommand + Environment.NewLine;
 
             // Start the process to execute the makeCommand
@@ -165,6 +159,8 @@ namespace MakeVB
                 StartInfo = processStartInfo
             };
 
+            // VB6.exe MAKE command does not seem to output anything useful, there is no distinct success or failure message.
+            // Will catch whatever it puts out and display it anyway.
             process.OutputDataReceived += (sender, args) => outputText.AppendLine(args.Data);
             process.ErrorDataReceived += (sender, args) => outputText.AppendLine(args.Data);
 
