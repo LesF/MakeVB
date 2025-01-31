@@ -14,3 +14,15 @@ Found recommendations to add this too, not sure if it was required:
         <WindowsPackageType>None</WindowsPackageType>
     </PropertyGroup>
 
+-----
+Context menu
+Added 'Open with MakeVB' action to the VisualBasic.Project class:
+
+	Windows Registry Editor Version 5.00
+
+	[HKEY_CLASSES_ROOT\VisualBasic.Project\shell\Open with MakeVB]
+	@="Open with MakeVB"
+
+	[HKEY_CLASSES_ROOT\VisualBasic.Project\shell\Open with MakeVB\command]
+	@="\"d:\\Programs\\MakeVB\\MakeVB.exe\" \"%1\""
+-----
