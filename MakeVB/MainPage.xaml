@@ -42,7 +42,7 @@
             <Entry x:Name="TargetBin" Placeholder="Output directory" />
         </VerticalStackLayout>
 
-        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Make VB Project" Clicked="OnMakeVBProject" Margin="0,20,0,0" HorizontalOptions="Start"  WidthRequest="150" />
+        <Button x:Name="MakeButton" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Make VB Project" Clicked="OnMakeVBProject" Margin="0,20,0,0" HorizontalOptions="Start"  WidthRequest="150" />
 
         <Label x:Name="OutputLabel" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Ready..." TextColor="SteelBlue" Margin="0,20,0,0" />
 

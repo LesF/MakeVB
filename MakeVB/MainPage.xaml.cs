@@ -130,6 +130,11 @@ namespace MakeVB
              * For example, to compile a project and redirect output messages to a file, you might use:
              *      vb6.exe /make MyProject.vbp /out BuildLog.txt
              */
+
+            string makeButtonText = MakeButton.Text;
+            MakeButton.IsEnabled = false;
+            MakeButton.Text = "Building...";
+
             StringBuilder outputText = new StringBuilder();
             FileInfo vbpFile = new FileInfo(pathToVBP);
             DateTime vbpModified = vbpFile.LastWriteTime;
@@ -198,6 +203,9 @@ namespace MakeVB
             {
                 OutputLabel.Text += "Build failed or no output file was generated." + Environment.NewLine;
             }
+
+            MakeButton.Text = makeButtonText;
+            MakeButton.IsEnabled = true;
 
             await Task.CompletedTask;
         }
