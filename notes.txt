@@ -1,6 +1,12 @@
-Publish for Windows 10
+Publish for Windows 10:
 
-dotnet publish -c Release -r win10-x64 --self-contained -f net8.0-windows10.0.19041
+	dotnet publish -c Release -r win10-x64 --self-contained -f net8.0-windows10.0.19041
+
+or:
+
+	dotnet publish -c Release -r win10-x64 --self-contained -f net8.0-windows10.0.19041.0
+
+to match the target in the project file.
 
 VS2022 Publish was not usable, it opens Archive Manager and tries to create an Android package(?) and there is no option to create or edit a Publish profile.
 

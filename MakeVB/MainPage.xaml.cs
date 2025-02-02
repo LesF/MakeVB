@@ -134,8 +134,10 @@ namespace MakeVB
             FileInfo vbpFile = new FileInfo(pathToVBP);
             DateTime vbpModified = vbpFile.LastWriteTime;
 
-            string expectedOutputDLL = Path.Combine(targetBin, Path.GetFileNameWithoutExtension(pathToVBP) + ".dll");
-            string expectedOutputEXE = Path.Combine(targetBin, Path.GetFileNameWithoutExtension(pathToVBP) + ".exe");
+            string[] outputNames = {
+                Path.Combine(targetBin, Path.GetFileNameWithoutExtension(pathToVBP) + ".dll"),
+                Path.Combine(targetBin, Path.GetFileNameWithoutExtension(pathToVBP) + ".exe")
+            };
 
             string makeCommand = $"\"{_pathToVBExe}\" /make \"{pathToVBP}\"";
 
@@ -172,16 +174,27 @@ namespace MakeVB
 
             OutputLabel.Text += outputText.ToString() + Environment.NewLine;
 
-            // Check if the expected output file exists and is newer than the .vbp file
-            if (File.Exists(expectedOutputDLL) && File.GetLastWriteTime(expectedOutputDLL) > vbpModified)
+            // Check if the expected output file exists was modified recently
+            DateTime recentTime = DateTime.Now.AddSeconds(-20);
+            string outputName = string.Empty;
+            for (int fname = 0; fname < outputNames.Length; fname++)
             {
-                OutputLabel.Text += $"Build succeeded: {expectedOutputDLL}" + Environment.NewLine;
+                if (File.Exists(outputNames[fname]))
+                {
+                    outputName = outputNames[fname];
+                    if (File.GetLastWriteTime(outputName) > recentTime)
+                    {
+                        OutputLabel.Text += $"Success!!  Output file was updated: {outputName}" + Environment.NewLine;
+                        break;
+                    }
+                    else
+                    {
+                        OutputLabel.Text += $"Output file was not updated: {outputName}" + Environment.NewLine;
+                        break;
+                    }
+                }
             }
-            else if (File.Exists(expectedOutputEXE) && File.GetLastWriteTime(expectedOutputEXE) > vbpModified)
-            {
-                OutputLabel.Text += $"Build succeeded: {expectedOutputEXE}" + Environment.NewLine;
-            }
-            else
+            if (string.IsNullOrEmpty(outputName))
             {
                 OutputLabel.Text += "Build failed or no output file was generated." + Environment.NewLine;
             }
